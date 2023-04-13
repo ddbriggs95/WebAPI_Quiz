@@ -8,17 +8,13 @@ const answerButtonsElement = document.querySelector('#answer-buttons');
 
 
 var timeEl = document.querySelector(".time");
-
-// Selects element by id
-// var mainEl = document.getElementById("main");
-
 var secondsLeft = 60;
 
 function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
     secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+    timeEl.textContent = "TIMER:" + secondsLeft;
     localStorage.setItem('score', secondsLeft);
     if(secondsLeft === 0) {
       // Stops execution of action at set interval
@@ -34,7 +30,7 @@ function setTime() {
 
 let shuffledQuestions, currentQuestionIndex;
 
-//create variable to store all questions in an array
+//create variable to store all questions in 
 const questions = [
     {
         question: 'Who is the lead guitarist for the Grateful Dead?',
@@ -47,14 +43,36 @@ const questions = [
         correct: 'Jerry Garcia'
     },
         {
-            question: 'Who is the best drummer in the world?',
+            question: 'Who is the drummer for the band Phish?',
             answers: [
                 {text: 'Jonathan Fishman', correct: true},
-                {text: 'Jon bovi', correct: false},
+                {text: 'Bon Jovi', correct: false},
                 {text: 'Hector Mann', correct: false},
-                {text: 'Dowling Briggs', correct: false}
+                {text: 'Reese Witherspoon', correct: false}
             ],
             correct: "Jonathan Fishman"
+     },
+
+        {
+            question: 'Who is the lead singer for Tedeschi Trucks Band?',
+            answers: [
+                {text: 'Bob Weir', correct: false},
+                {text: 'Robert Plant', correct: false},
+                {text: 'Caleb Butler', correct: false},
+                {text: 'Susan Tedeschi', correct: true}
+            ],
+            correct: 'Susan Tedeschi'
+        },
+
+        {
+            question: 'Who is the percussionist for the band Widespread Panic?',
+            answers: [
+                {text: 'Willie Nelson', correct: false},
+                {text: 'JoJo Herman', correct: true},
+                {text: 'Brendan Bayliss', correct: false},
+                {text: 'Luke Skywalker', correct: false}
+            ],
+            correct: 'JoJo Herman'
         }
 ]
 
@@ -71,14 +89,14 @@ function startGame() {
 
 }
 
- 
-
+nextButton.addEventListener('click', nextQuestion);
+//function to load next question when user clicks next
 function nextQuestion(){
     currentQuestionIndex++;
     if(currentQuestionIndex == questions.length) {
         var initials = prompt('Please enter initials');
         localStorage.setItem('initials', initials);
-        window.location.replace("/highscore.html");
+        window.location.replace("/highscore.html");  
     }
     resetState();
     showQuestion(questions[currentQuestionIndex]);
@@ -97,7 +115,7 @@ function nextQuestion(){
     
 }
 
-nextButton.addEventListener('click', nextQuestion);
+
 
 function resetState() {
     // nextButton.classList.add('hide');
@@ -122,8 +140,7 @@ function showQuestion(question) {
 
 }
 
-
-
 function selectAnswer() {
+
 
 }
